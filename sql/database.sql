@@ -1,6 +1,6 @@
 CREATE DATABASE lyrics_database;
 USE lyrics_database;
-CREATE TABLE IF NOT EXISTS 'lyrics' (
+CREATE TABLE IF NOT EXISTS 'lyrics'(
   'id' INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   'title' VARCHAR(50),
   'singer' VARCHAR(50),
