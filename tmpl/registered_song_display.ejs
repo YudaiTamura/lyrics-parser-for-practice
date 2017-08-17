@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title><%=title %></title>
+    <title><%= title %></title>
     <style>
         body{background: lightgray;}
     </style>
@@ -31,12 +31,14 @@
             <th>歌手名</th>
             <th>歌詞</th>
         </tr>
+        <% boardList.forEach(function (value) { %>
         <tr>
-            <td><%= boardList[0] %></td>
-            <td><%= boardList[1] %></td>
-            <td><%= boardList[2] %></td>
-            <td><%= boardList[3] %></td>
+            <td><%= value["id"] %></td>
+            <td><%= value["title"] %></td>
+            <td><%= value["singer"] %></td>
+            <td><%= value["lyric"] %></td>
         </tr>
+        <% }); %>
     </table>
 
 </div>
