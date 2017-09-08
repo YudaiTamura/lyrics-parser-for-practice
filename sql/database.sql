@@ -1,12 +1,29 @@
 CREATE DATABASE lyrics_database;
 USE lyrics_database;
-CREATE TABLE IF NOT EXISTS `lyrics` (
+
+
+
+CREATE TABLE IF NOT EXISTS `lyric` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(50),
-  `singer` VARCHAR(50),
   `lyric` TEXT,
-  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY(`id`) )
-  DEFAULT CHARACTER SET = utf8;
-SHOW COLUMNS from lyrics;
+  `title` VARCHAR(50),
+  PRIMARY KEY(`id`)
+  UNIQUE(`lyric`) )
+DEFAULT CHARACTER SET = utf8;
+
+
+CREATE TABLE IF NOT EXISTS `lyric_singer` (
+  `lyric_id` INT(10) UNSIGNED NOT NULL,
+  `singer` VARCHAR(50),
+  PRIMARY KEY(`lyric_id`) )
+DEFAULT CHARACTER SET = utf8;
+
+
+CREATE TABLE IF NOT EXISTS `waiting` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `singer` VARCHAR(50),
+  `title` VARCHAR(50),
+  PRIMARY KEY(`id`),
+  UNIQUE(`singer`, `title`) )
+DEFAULT CHARACTER SET = utf8;
+
