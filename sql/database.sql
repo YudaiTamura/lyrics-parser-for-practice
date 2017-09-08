@@ -15,7 +15,14 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `lyric_singer` (
   `lyric_id` INT(10) UNSIGNED NOT NULL,
   `singer` VARCHAR(50),
-  PRIMARY KEY(`lyric_id`) )
+  UNIQUE(`lyric_id, singer`) )
+DEFAULT CHARACTER SET = utf8;
+
+
+CREATE TABLE IF NOT EXISTS `mp3_lyric` (
+  `mp3` VARCHAR(100),
+  `lyric_id` INT(10) UNSIGNED NOT NULL,
+  UNIQUE(`lyric_id, mp3`) )
 DEFAULT CHARACTER SET = utf8;
 
 
