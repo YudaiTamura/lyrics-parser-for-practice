@@ -24,9 +24,9 @@
 <div align="center">
 
     <table border="1">
-        <caption>登録済みの曲</caption>
+        <caption><b>登録済みの曲</b></caption>
         <tr>
-            <th>ID</th>
+            <th>#</th>
             <th>曲名</th>
             <th>歌手名</th>
             <th>歌詞</th>
@@ -35,7 +35,7 @@
         <tr>
             <td><%= value["id"] %></td>
             <td><%= value["title"] %></td>
-            <td><%= value["singer"] %></td>
+            <td><%= value["name"] %></td>
             <td><%= value["lyric"] %></td>
         </tr>
         <% }); %>
