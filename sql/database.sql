@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `song` (
   PRIMARY KEY (`id`),
   UNIQUE(`title`, `composer_id`)
   CONSTRAINT `fk_composer` FOREIGN KEY (`composer_id`) REFERENCES `composer` (`id`)
-  ON DELETE NO ACTION ON UPDATE CASCADE,
+  ON DELETE NO ACTION ON UPDATE CASCADE
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
