@@ -19,10 +19,10 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `song` (
   `id`          INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title`       VARCHAR(50),
-  `composer_id` INT(10),
+  `composer_id` INT(10) UNSIGNED NOT NULL,
   `lyric`       TEXT DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE(`title`, `composer_id`)
+  UNIQUE(`title`, `composer_id`),
   CONSTRAINT `fk_composer` FOREIGN KEY (`composer_id`) REFERENCES `composer` (`id`)
   ON DELETE NO ACTION ON UPDATE CASCADE
 )
