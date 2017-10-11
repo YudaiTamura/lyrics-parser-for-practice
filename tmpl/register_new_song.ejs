@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>新規登録画面</title>
+
+    <style>
+        body {
+            background: lightgray;
+        }
+
+        .divToRegister {
+            background-color: silver;
+        }
+    </style>
+</head>
+
+
+<body>
+<div class="divToRegister" align="center">
+    <form action="post" method="post">
+        <table>
+            <tr>
+                <td>曲名：</td>
+                <td><input type="text" name="title" style="margin-right: 20px" value=<%= inputtedTextMap["title"] %>></td>
+                <td><%= errors["title"] %></td>
+            </tr>
+            <tr>
+                <td>歌手名：</td>
+                <td><input type="text" name="singerName" style="margin-right: 20px" value=<%= inputtedTextMap["singerName"] %>></td>
+                <td><%= errors["singerName"] %></td>
+            </tr>
+            <tr>
+                <td>mp3ファイル：</td>
+                <td><input type="file" name="mp3file" size="30"%>></td>
+                <td><%= errors["mp3file"] %></td>
+            </tr>
+        </table>
+
+        <input type="submit" value="新たに登録する">
+    </form>
+</div>
+
+
+</body>
+</html>
+
