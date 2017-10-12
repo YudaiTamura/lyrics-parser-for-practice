@@ -22,19 +22,19 @@
         <table>
             <tr>
                 <td>曲名：</td>
-                <td><input type="text" name="title" style="margin-right: 20px" value=<%= inputtedTextMap["title"] %>>
+                <td><input type="text" name="title" style="margin-right: 20px" value=<%= inputtedTexts["title"] %>>
                 </td>
-                <td style=color:red><%= errors["title"] %></td>
+                <td style=color:red><%= errorMessages["title"] %></td>
             </tr>
             <tr>
                 <td>歌手名：</td>
-                <td><input type="text" name="singerName" style="margin-right: 20px" value=<%= inputtedTextMap["singerName"] %>></td>
-                <td style=color:red><%= errors["singerName"] %></td>
+                <td><input type="text" name="singerName" style="margin-right: 20px" value=<%= inputtedTexts["singerName"] %>></td>
+                <td style=color:red><%= errorMessages["singerName"] %></td>
             </tr>
             <tr>
                 <td>mp3ファイル：</td>
                 <td><input type="file" name="mp3file" size="30"></td>
-                <td style=color:red><%= errors["mp3file"] %></td>
+                <td style=color:red><%= errorMessages["mp3file"] %></td>
             </tr>
         </table>
 
