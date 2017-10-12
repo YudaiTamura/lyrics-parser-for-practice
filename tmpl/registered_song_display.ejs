@@ -33,7 +33,7 @@
         </tr>
         <% boardList.forEach(function (value) { %>
         <tr>
-            <td><%= value["id"] %></td>
+            <td name="anchor<%= + value["id"] %>"><%= value["id"] %></td>
             <td><%= value["title"] %></td>
             <td><%= value["name"] %></td>
             <td><%= value["lyric"] %></td>
