@@ -4,25 +4,45 @@
     <meta charset="UTF-8">
     <title>登録済み曲表示画面</title>
     <style>
-        body{background: lightgray;}
+        body {
+            background: lightgray;
+        }
+
+        .divForReference {
+            background-color: silver;
+        }
     </style>
 </head>
 
 
 <body>
 
-<br><br>
-
+<br>
+<div class="divForReference" align="center">
+    <form action="./" method="get">
+        <table>
+            <tr>
+                <td>曲名：</td>
+                <td><input type="text" name="title" style="margin-right: 20px"></td>
+                <td style=color:red></td>
+            </tr>
+            <tr>
+                <td>歌手名：</td>
+                <td><input type="text" name="singerName" style="margin-right: 20px"></td>
+                <td style=color:red></td>
+            </tr>
+        </table>
+        <input type="submit" value="検索">
+    </form>
+    <p style=color:red></p>
+</div>
 <div align="center">
     <a class="register" href="registration/">
         曲の新規登録を行う
     </a>
 </div>
-
 <br>
-
 <div align="center">
-
     <table border="1">
         <caption><b>登録済みの曲</b></caption>
         <tr>
@@ -31,16 +51,22 @@
             <th>歌手名</th>
             <th>歌詞</th>
         </tr>
-        <% boardList.forEach(function (value) { %>
+        <%
+        if (boardList) {
+            boardList.forEach(function (value) {
+        %>
         <tr>
-            <td name="anchor<%= + value["id"] %>"><%= value["id"] %></td>
+            <td name="anchor<%= +value["id"] %>"><%= value["id"] %></td>
             <td><%= value["title"] %></td>
             <td><%= value["name"] %></td>
             <td><%= value["lyric"] %></td>
         </tr>
-        <% }); %>
+        <%
+            });
+        }
+        %>
     </table>
-
 </div>
+
 </body>
 </html>
