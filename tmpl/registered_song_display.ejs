@@ -32,9 +32,11 @@
                 <td style=color:red></td>
             </tr>
         </table>
-        <input type="submit" value="検索">
+        <input type="submit" value="登録済み曲を検索">
     </form>
-    <p style=color:red></p>
+    <% if (boardList.length == 0){ %>
+    <p>検索結果がありませんでした</p>
+    <% } %>
 </div>
 <div align="center">
     <a class="register" href="registration/">
@@ -42,6 +44,7 @@
     </a>
 </div>
 <br>
+<% if (boardList.length != 0){ %>
 <div align="center">
     <table border="1">
         <caption><b>登録済みの曲</b></caption>
@@ -51,22 +54,16 @@
             <th>歌手名</th>
             <th>歌詞</th>
         </tr>
-        <%
-        if (boardList) {
-            boardList.forEach(function (value) {
-        %>
+        <% boardList.forEach(function (value) { %>
         <tr>
             <td name="anchor<%= +value["id"] %>"><%= value["id"] %></td>
             <td><%= value["title"] %></td>
             <td><%= value["name"] %></td>
             <td><%= value["lyric"] %></td>
         </tr>
-        <%
-            });
-        }
-        %>
+        <% }); %>
     </table>
 </div>
-
+<% } %>
 </body>
 </html>
