@@ -15,7 +15,7 @@ while True:
     time.sleep(2)  # 2秒待ってから実行
 
     # DBに接続する
-    connection = mysql.connector.connect(user='root', host='localhost', database='lyrics_database')
+    connection = mysql.connector.connect(user='root', host='localhost', database='lyrics_database2')
     # カーソルを取得する
     cursor = connection.cursor()
     # クエリの実行
