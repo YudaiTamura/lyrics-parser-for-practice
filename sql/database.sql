@@ -22,7 +22,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `singer_song` (
   `singer_id` INT(10) UNSIGNED NOT NULL,
   `song_id`   INT(10) UNSIGNED NOT NULL,
-  `mp3path`   TEXT DEFAULT NULL,
+  `mp3path`   VARCHAR(200) DEFAULT NULL,
   UNIQUE(`singer_id`,`song_id`, `mp3path`),
   CONSTRAINT `fk_singer` FOREIGN KEY (`singer_id`) REFERENCES `singer` (`id`)
   ON DELETE NO ACTION ON UPDATE CASCADE,
