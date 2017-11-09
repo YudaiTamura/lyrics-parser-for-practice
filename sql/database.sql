@@ -1,7 +1,8 @@
 CREATE TABLE IF NOT EXISTS `singer` (
   `id`   INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50),
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE(`name`)
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -12,7 +13,8 @@ CREATE TABLE IF NOT EXISTS `song` (
   `id`          INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title`       VARCHAR(50),
   `lyric`       TEXT DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE(`title`, `lyric`)
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
