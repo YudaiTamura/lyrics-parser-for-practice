@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `song` (
   `title`       VARCHAR(50),
   `lyric`       TEXT DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE(`title`, `lyric`)
+  UNIQUE(`title`, `lyric`(50))
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
