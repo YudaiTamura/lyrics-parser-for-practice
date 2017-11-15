@@ -21,7 +21,7 @@ while True:
     cursor = connection.cursor()
     # クエリの実行
     cursor.execute(
-        "SELECT singer.id, singer.name, song.title, song.lyric " +
+        "SELECT singer.id, singer.name, song.title, song.lyric, singer_song.song_id " +
         "FROM song " +
         "INNER JOIN singer_song ON singer_song.song_id = song.id " +
         "INNER JOIN singer ON singer.id = singer_song.singer_id;"
@@ -40,22 +40,20 @@ while True:
             # 配列 listURLtoSearchByTitleを成型して、文字列stringURLtoSearchByTitleにする
             listURLtoSearchByTitle[1] = urllib.parse.quote_plus(title, encoding='utf-8')
             stringURLtoSearchByTitle = "".join(listURLtoSearchByTitle)
+            
             # HTMLファイルを開く
-            data = urllib.request.urlopen(stringURLtoSearchByTitle)
-            print(stringURLtoSearchByTitle)
-            # HTMLの取得
-            html = data.read()
-            # HTMLファイルを閉じる
-            data.close()
-            # BeautifulSoupオブジェクトの作成
-            soup = BeautifulSoup(html, "lxml")
-            # 取得したいタグの種類とクラス属性を指定し、歌手名をリストで取得
-            singerNames = soup.findAll("td", class_="td2")
-            
-            print(singerNames)
-            
-            # 曲の検索結果があった時
-            if len(singerNames) != 0:
+            # 曲の検索結果がある時
+            try:
+                data = urllib.request.urlopen(stringURLtoSearchByTitle)
+                # HTMLの取得
+                html = data.read()
+                # HTMLファイルを閉じる
+                data.close()
+                # BeautifulSoupオブジェクトの作成
+                soup = BeautifulSoup(html, "lxml")
+                # 取得したいタグの種類とクラス属性を指定し、歌手名をリストで取得
+                singerNames = soup.findAll("td", class_="td2")
+
             
                 ### 曲名を元に検索して出てきたものの中から歌手名も一致するものを選択する ###
                 # for文の最初で+1するため、indicatorの初期値は0ではなく-1にしておく
@@ -103,24 +101,23 @@ while True:
                         connection.commit()
                         break
 
-                    # 歌手の検索結果がなかった時は
+                    # 歌手の検索結果がなかった時は該当するレコードをsinger_songテーブルから削除
                     else:
-                        print("44444444444444")
                         # INNER JIONした時のsong.idがstr(row[0])であるsinger_idを削除)
                         cursor.execute(
-                            "DELETE FROM " +
-                            "(SELECT singer_song.song_id, singer_song.singer_id FROM song " +
-                            "INNER JOIN singer_song ON singer_song.song_id = song.id " +
-                            "INNER JOIN singer ON singer.id = singer_song.singer_id) " + 
-                            "WHERE singer_id = " +#################################################
-                            "AND song_id = " + str(row[0]) + ";"
+                            "DELETE FROM singer_song " + 
+                            "WHERE singer_id = " + str(row[0]) + " AND song_id = " + str(row[4]) + ";"
                         )
                         connection.commit()
-                        print("555555555")
                         
-            # 曲名の検索結果がなかった時は曲名を消す
-            #else:
-            #
+                        
+            # 曲名の検索結果がなかった時はは該当するレコードをsinger_songテーブルから削除
+            except urllib.error.HTTPError:
+                cursor.execute(
+                    "DELETE FROM singer_song " + 
+                    "WHERE singer_id = " + str(row[0]) + " AND song_id = " + str(row[4]) + ";"
+                )
+                connection.commit()
                 
     cursor.close
     connection.close
