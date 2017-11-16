@@ -56,8 +56,8 @@
         </tr>
         <% boardList.forEach(function (value) { %>
         <tr>
-            <td name="anchor<%= +value["id"] %>"><%= value["id"] %></td>
-            <td><%= value["title"] %></td>
+            <td><a name="anchor<%= value["id"] %>"><%= value["id"] %></a></td>
+            <td><a><%= value["title"] %></a></td>
             <td><%= value["name"] %></td>
             <td><%= value["lyric"] %></td>
         </tr>

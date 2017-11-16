@@ -64,7 +64,6 @@ while True:
 
                 ## 検索したい曲のページのURLの取得
                 for td in singerNames:
-                    print("11111111111111111")
                     indicator += 1
                     targetSingerName = td.find("a").text
                     # 歌手の検索結果があった時
@@ -95,8 +94,8 @@ while True:
 
                         # DBに歌詞を書き込み
                         cursor.execute(
-                            "UPDATE song SET lyric = '''" + parsedLyrics + "''' " +
-                            "WHERE id = " + str(row[0]) + ";"
+                            "UPDATE song SET lyric = %s WHERE id = %s;",
+                            (parsedLyrics, str(row[0]))
                         )
                         connection.commit()
                         break
@@ -105,8 +104,8 @@ while True:
                     else:
                         # INNER JIONした時のsong.idがstr(row[0])であるsinger_idを削除)
                         cursor.execute(
-                            "DELETE FROM singer_song " + 
-                            "WHERE singer_id = " + str(row[0]) + " AND song_id = " + str(row[4]) + ";"
+                            "DELETE FROM singer_song WHERE singer_id = %s AND song_id = %s;",
+                            (str(row[0]), str(row[4]))
                         )
                         connection.commit()
                         
@@ -114,8 +113,8 @@ while True:
             # 曲名の検索結果がなかった時はは該当するレコードをsinger_songテーブルから削除
             except urllib.error.HTTPError:
                 cursor.execute(
-                    "DELETE FROM singer_song " + 
-                    "WHERE singer_id = " + str(row[0]) + " AND song_id = " + str(row[4]) + ";"
+                    "DELETE FROM singer_song WHERE singer_id = %s AND song_id = %s;",
+                    (str(row[0]), str(row[4]))
                 )
                 connection.commit()
                 
